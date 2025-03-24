@@ -1,0 +1,98 @@
+---- PAGINA PARA CORRER EL DIAGRAMA -----
+
+https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
+
+--------------------------------------------------------------------------------------------
+
+@startuml
+!define MASTER_COLOR #LightSkyBlue
+!define SUB_COLOR #LightSteelBlue
+!define ENTITY_COLOR #White
+!define FONT_SIZE_NORMAL 12
+!define FONT_SIZE_SMALL 10
+
+skinparam class {
+    BackgroundColor MASTER_COLOR
+    BorderColor Black
+    ArrowColor Black
+    FontSize FONT_SIZE_NORMAL
+}
+
+package "Sistema de Información" {
+    package "Roles y Usuarios" {
+        class "Rol" {
+            +rol_codigo: int
+            +rol_nombre: String
+        }
+        class "Usuario" {
+            +rol_codigo: int
+            +usuario_codigo: int
+            +usuario_nombre: String
+            +usuario_apellido: String
+            +usuario_correo: String
+            +usuario_pass: String
+            +usuario_estado: tinyint
+        }
+        "Rol" *-- "Usuario"
+    }
+
+    package "Inventarios" {
+        class "Producto" {
+            +nombre: String
+            +cantidad: int
+            +precio: float
+        }
+    }
+
+    package "Contabilidad" {
+        class "Transacción" {
+            +fecha: Date
+            +monto: float
+            +tipo: String
+        }
+    }
+
+    package "Recursos Humanos" {
+        class "Empleado" {
+            +nombre: String
+            +cargo: String
+        }
+    }
+
+    package "Ventas" {
+        class "Venta" {
+            +fecha: Date
+            +total: float
+        }
+        class "DetalleVenta" {
+            +cantidad: int
+            +subtotal: float
+        }
+        "Venta" *-- "DetalleVenta"
+    }
+
+    package "Reportes" {
+        class "Reporte" {
+            +tipo: String
+            +fecha_generacion: Date
+        }
+    }
+
+    package "CRM (Customer Relationship Management)" {
+        class "Cliente" {
+            +nombre: String
+            +correo: String
+            +telefono: String
+        }
+    }
+
+    "Usuario" --> "Empleado"
+    "Usuario" --> "Cliente"
+    "Empleado" o-- "Venta"
+    "Empleado" o-- "Producto"
+    "Transacción" -- "Venta"
+    "Transacción" -- "Producto"
+    "Transacción" -- "Reporte"
+}
+
+@enduml
