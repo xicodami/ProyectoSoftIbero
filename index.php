@@ -1,14 +1,17 @@
-
 <?php
-require_once "models/Database.php";
-if(!isset($_REQUEST['c'])){
-    require_once "controllers/Login.php";
-    $controller = new Login;
-    $controller->index();
-}else {
-    $controller = $_REQUEST['c'];
-    require_once "controllers/".$controller . ".php";
-    $controller = new $controller;
-    $action = isset($_REQUEST['a']) ? $_REQUEST['a'] : "index";
-    call_user_func(array($controller, $action));
-}
+
+/*=============================================
+Mostrar errores
+=============================================*/
+
+ini_set('display_errors', 1);
+ini_set("log_errors", 1);
+ini_set("error_log",  "D:/xampp/htdocs/pos/php_error_log");
+
+require_once "controladores/plantilla.controlador.php";
+require_once "controladores/usuarios.controlador.php";
+require_once "modelos/usuarios.modelo.php";
+require_once "extensiones/vendor/autoload.php";
+
+$plantilla = new ControladorPlantilla();
+$plantilla -> ctrPlantilla();
