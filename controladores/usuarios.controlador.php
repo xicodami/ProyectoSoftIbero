@@ -3,7 +3,7 @@
 class ControladorUsuarios{
 
 	/*=============================================
-	INGRESO DE USUARIO LOGIN
+	INGRESO DE USUARIO
 	=============================================*/
 
 	static public function ctrIngresoUsuario(){
@@ -474,4 +474,5 @@ class ControladorUsuarios{
 
 }
 	
-	
+
+
